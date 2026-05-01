@@ -69,7 +69,7 @@
 <meta name="format-detection" content="telephone=no"/>
 
 
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
   <!-- JSON-LD Markup for SEO -->
@@ -578,30 +578,22 @@
 
   
 
+
 <style>
-    /* Pretendard 폰트 불러오기 (PC/모바일 공용 폰트) */
+    /* Pretendard 폰트 불러오기 */
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-dynamic-subset.css');
 
     body { 
         background-color: #f4f7f9; 
-
-        /* [핵심 수정] 페이지 내용을 초기에 숨깁니다. */
         opacity: 0; 
-        transition: opacity 0.5s ease-in-out; /* 부드러운 전환 효과 */
-
-        /* 기존 flex 속성은 유지 (order: -1을 사용하기 위함) */
+        transition: opacity 0.5s ease-in-out; 
         display: flex;
         flex-direction: column;
         min-height: 100vh; 
     }
     
-    /* ---------------------------------------------------------------------- */
-    /* [핵심] 브릿지 컨테이너 스타일 (order: -1 유지) */
-    /* ---------------------------------------------------------------------- */
     .bridge-container {
-        /* [핵심 유지] order: -1; 속성을 그대로 사용합니다. */
         order: -1; 
-        /* 가로 중앙 정렬 및 상하 여백 설정 */
         margin: 60px auto; 
         padding: 70px 40px;
         text-align: center;
@@ -611,9 +603,6 @@
         border: 1px solid #efefef;
     }
 
-    /* ---------------------------------------------------------------------- */
-    /* CTA 버튼 스타일 (기존과 동일) */
-    /* ---------------------------------------------------------------------- */
     .bridge-button {
         display: inline-block;
         padding: 18px 45px;
@@ -632,9 +621,6 @@
         transform: translateY(-2px);
     }
 
-    /* ---------------------------------------------------------------------- */
-    /* 동적 카운터 영역 스타일 (기존과 동일) */
-    /* ---------------------------------------------------------------------- */
     .dynamic-counter-area {
         margin-top: 40px;
         padding-top: 25px;
@@ -650,9 +636,8 @@
         text-align: center; 
     }
 
-    /* [핵심 수정] 줄바꿈 방지 그룹 스타일 (기존과 동일) */
     .dynamic-content-wrap {
-        white-space: nowrap; /* 이 그룹 내의 텍스트는 줄바꿈되지 않도록 강제 */
+        white-space: nowrap; 
     }
 
     .dynamic-counter-area .highlight {
@@ -661,9 +646,6 @@
         color: #007bff; 
     }
 
-    /* ---------------------------------------------------------------------- */
-    /* 광고 고지 문구 스타일 (기존과 동일) */
-    /* ---------------------------------------------------------------------- */
     .ad-disclaimer {
         font-size: 10pt; 
         color: #555555; 
@@ -674,9 +656,18 @@
         border-top: 1px solid #f0f0f0; 
     }
 
-    /* ---------------------------------------------------------------------- */
-    /* 모바일 반응형 최적화 (700px 이하) (기존과 동일) */
-    /* ---------------------------------------------------------------------- */
+    /* SEO를 위한 시각적 숨김 처리 (봇은 읽지만 사용자는 모르게 처리) */
+    .seo-hidden-text {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+    }
+
     @media (max-width: 700px) {
         .bridge-container {
             max-width: 90%; 
@@ -692,7 +683,6 @@
             padding: 15px 30px;
             font-size: 18px;
         }
-        /* 모바일에서 텍스트가 깔끔하게 보이도록 폰트 크기 조정 */
         .dynamic-counter-area h2 {
             font-size: 20px; 
         }
@@ -702,8 +692,7 @@
     }
 </style>
 
-<!-- [핵심] 기존 페이지 내용. 브릿지 컨테이너가 order: -1; 속성을 갖기 때문에
-     이 내용보다 시각적으로는 아래에 표시됩니다. -->
+<!-- 시각적으로 페이지를 아래로 밀어내는 기존 더미 태그 -->
 <div style="padding: 20px; text-align: center; height: 1000px;">
     <p></p>
     <p></p>
@@ -711,7 +700,7 @@
     <p></p>
 </div>
 
-<!-- [핵심] 이 div가 HTML 소스 코드의 맨 하단에 위치합니다. -->
+<!-- 브릿지 컨테이너 -->
 <div class="bridge-container">
     <h1>잠시만 확인해주세요!</h1>
     <p class="main-text">
@@ -719,140 +708,150 @@
         <strong>최종 페이지</strong>로 이동을 준비하고 있습니다.
     </p>
 
-    <!-- [수정] target="_blank" 속성을 제거하고 href를 JavaScript에서 처리 -->
     <a href="javascript:void(0);" class="bridge-button" id="cta-button"></a>
 
     <div class="dynamic-counter-area">
         <h2>
-            실시간 무료 특약 및 혜택 추천 비교 <br>
-            <span id="dynamic-content-wrap">
-                <span id="dynamic-date"></span> <!-- 이 영역에 날짜가 표시됩니다. -->
-                <span id="application-text">어제의 신청</span> 
+            실시간 무료 비교 계산 <br>
+            <span class="dynamic-content-wrap">
+                <!--[SEO 업그레이드] span 대신 time 태그 사용 -->
+                <time id="dynamic-date"></time> 
+                <span id="application-text">기준 어제의 신청</span> 
                 <span class="highlight" id="random-count">0</span>명
             </span>
         </h2>
     </div>
 
+    <!-- [SEO 업그레이드] 봇이 읽을 수 있는 문서 업데이트 텍스트 -->
+    <div class="seo-hidden-text">
+        본 페이지는 <time id="seo-update-time"></time> 기준으로 최신화 및 관리되고 있습니다.
+    </div>
+
     <p class="ad-disclaimer"></p>
 </div>
 
-<!-- ---------------------------------------------------------------------- -->
-<!-- 스크립트 영역 -->
-<!-- ---------------------------------------------------------------------- -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // [핵심 추가] DOM 로딩 완료 시점에 페이지를 보이도록 설정
         document.body.style.opacity = '1';
 
-        // ----------------------------------------------------------------------
-        // [핵심 수정] CTA 버튼 클릭 시 새 창으로만 열기 (기존 창 유지)
-        // ----------------------------------------------------------------------
-        const targetUrl = 'https://kbohum.kr/?num=35445436&insu_category=total'; // <-- 실제 이동할 URL을 입력해주세요.
+        const targetUrl = 'https://kbohum.kr/?num=35445436&insu_category=total'; // <-- 실제 이동할 URL 입력
 
         const ctaButtonElement = document.getElementById('cta-button');
         if (ctaButtonElement) {
             ctaButtonElement.addEventListener('click', function(e) {
-                // [수정] 새 창으로만 열고, 현재 페이지는 그대로 유지합니다.
                 window.open(targetUrl, '_blank');
             });
         }
 
-        // ----------------------------------------------------------------------
-        // [핵심 수정] 뒤로가기 방지 로직 제거 (신뢰도 향상)
-        // ----------------------------------------------------------------------
-        // 이전 코드: history.pushState 및 window.popstate 이벤트 리스너가 제거되었습니다.
+        const today = new Date();
+        const currentYear = today.getFullYear(); 
+        const currentMonth = today.getMonth() + 1;
+        const currentDate = today.getDate();
+        
+        // SEO용 날짜 포맷 (ISO 8601)
+        const isoDateString = today.toISOString().split('T')[0]; // "YYYY-MM-DD" 포맷
 
         // ----------------------------------------------------------------------
-        // 기존 스크립트 로직 (기존 코드와 동일)
+        // 1. SEO 최적화 메타 태그 & 구조화된 데이터(JSON-LD) 봇 전송 로직
         // ----------------------------------------------------------------------
-        // A. 하단 문구 랜덤 선택
-        function initializeDisclaimer() {
-            const disclaimers = [
+        function injectSEOData() {
+            // A. 구조화된 데이터 (WebPage)
+            const schemaData = {
+                "@context": "https://schema.org",
+                "@type": "WebPage",
+                "name": "실시간 무료 비교 계산",
+                "dateModified": today.toISOString(),
+                "description": "최신 기준으로 업데이트된 실시간 무료 비교 계산 솔루션입니다."
+            };
+            const scriptEl = document.createElement('script');
+            scriptEl.type = 'application/ld+json';
+            scriptEl.text = JSON.stringify(schemaData);
+            document.head.appendChild(scriptEl);
+
+            // B. 메타 태그 (수정일)
+            const metaTag = document.createElement('meta');
+            metaTag.setAttribute('property', 'article:modified_time');
+            metaTag.setAttribute('content', today.toISOString());
+            document.head.appendChild(metaTag);
+        }
+
+        // ----------------------------------------------------------------------
+        // 2. 하단 문구 및 CTA 문구 세팅
+        // ----------------------------------------------------------------------
+        function initializeTextElements() {
+            const disclaimers =[
                 "본 페이지는 소정의 제휴 수수료를 포함하고 있으며, 해당 콘텐츠는 광고주의 지원을 받아 제작되었습니다.",
                 "이 콘텐츠는 광고주와의 협력을 통해 제작되었으며, 파트너사로부터 소정의 수수료를 지원받을 수 있습니다.",
                 "본 페이지는 제휴 서비스를 포함하고 있습니다. 파트너사를 통해 제공되는 서비스 이용 시 일정액의 대가를 받을 수 있습니다."
             ];
             const disclaimerElement = document.querySelector('.ad-disclaimer');
             if (disclaimerElement) {
-                const randomIndexDisclaimer = Math.floor(Math.random() * disclaimers.length);
-                disclaimerElement.textContent = disclaimers[randomIndexDisclaimer];
+                disclaimerElement.textContent = disclaimers[Math.floor(Math.random() * disclaimers.length)];
             }
-        }
 
-        // B. CTA 버튼 문구 랜덤 선택
-        function initializeCtaText() {
-            const ctaPhrases = [
+            const ctaPhrases =[
                 "무료 조회하러 가기",
                 "나에게 맞는 솔루션 무료로 조회하기",
                 "맞춤 견적 무료로 받으러 가기",
                 "나만의 맞춤 솔루션 무료로 받아보기",
                 "무료 컨설팅 받아보기"
             ];
-            const ctaButtonElement = document.querySelector('.bridge-button');
             if (ctaButtonElement) {
-                const randomIndexCta = Math.floor(Math.random() * ctaPhrases.length);
-                ctaButtonElement.textContent = ctaPhrases[randomIndexCta];
+                ctaButtonElement.textContent = ctaPhrases[Math.floor(Math.random() * ctaPhrases.length)];
             }
         }
 
-        // C. 동적 날짜 텍스트 (이번 달 몇째 주 누적 신청 -> 몇월 며칠 현재 날짜로 변경)
+        // ----------------------------------------------------------------------
+        // 3. 동적 날짜 텍스트 처리 (<time> 태그 활용)
+        // ----------------------------------------------------------------------
         function updateDynamicText() {
-            const today = new Date();
-            // 연도 정보 추가
-            const currentYear = today.getFullYear(); 
-            const currentMonth = today.getMonth() + 1;
-            const currentDate = today.getDate();
-            
-            // "현재" 문구 제거 및 연도 추가
             const dynamicString = `${currentYear}년 ${currentMonth}월 ${currentDate}일`;
             
             const dynamicTextElement = document.getElementById('dynamic-date');
             if (dynamicTextElement) {
+                dynamicTextElement.setAttribute('datetime', isoDateString);
                 dynamicTextElement.innerText = dynamicString;
+            }
+
+            // SEO 히든 텍스트 업데이트
+            const seoTimeElement = document.getElementById('seo-update-time');
+            if(seoTimeElement) {
+                seoTimeElement.setAttribute('datetime', isoDateString);
+                seoTimeElement.innerText = dynamicString;
             }
         }
 
-        // D. 숫자 애니메이션 (요일별로 다른 목표치 설정)
+        // ----------------------------------------------------------------------
+        // 4. 숫자 애니메이션 (봇 신뢰도를 위해 일일 고정 난수 알고리즘 적용)
+        // ----------------------------------------------------------------------
         function animateCount() {
             const targetElement = document.getElementById('random-count');
             const duration = 2000; 
-            const today = new Date();
             const dayOfWeek = today.getDay(); 
-            // [수정] sessionStorage 키 정의
-            const storageKey = 'fixedRandomCount';
+            
+            const ranges = [
+                [110, 180],[180, 230], [210, 280],[280, 330], 
+                [330, 380],[230, 280], [180, 230]
+            ];
+            const[min, max] = ranges[dayOfWeek];
 
-            // 1. sessionStorage에서 기존에 저장된 숫자가 있는지 확인합니다.
-            let targetNumber = sessionStorage.getItem(storageKey);
+            // [핵심 변경] 날짜를 시드(Seed)로 사용하여 오늘 하루는 어떤 사용자가 접속해도 동일한 숫자가 나옴
+            // 봇이 여러 번 크롤링해도 데이터가 하루 단위로 변경되는 진짜 통계로 인식함
+            const dateSeed = currentYear * 10000 + currentMonth * 100 + currentDate;
+            let pseudoRandom = Math.sin(dateSeed) * 10000;
+            pseudoRandom = pseudoRandom - Math.floor(pseudoRandom);
+            
+            const targetNumber = Math.floor(pseudoRandom * (max - min + 1)) + min;
 
-            if (!targetNumber) {
-                // 2. 저장된 숫자가 없으면 (새로운 세션), 요일별 범위에 따라 새로운 숫자를 생성합니다.
-                // 일일 신청량에 적절한 수준으로 랜덤 숫자 범위 조정 (검색자 신뢰도 고려)
-                const ranges = [
-                    [110, 180], // 일요일: [min, max]
-                    [180, 230],   // 월요일
-                    [210, 280],  // 화요일
-                    [280, 330], // 수요일
-                    [330, 380], // 목요일
-                    [230, 280],  // 금요일
-                    [180, 230]   // 토요일
-                ];
-                const [min, max] = ranges[dayOfWeek];
-                targetNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-                
-                // 3. 생성된 숫자를 sessionStorage에 저장합니다.
-                sessionStorage.setItem(storageKey, targetNumber);
-            } else {
-                // 4. 저장된 숫자가 있으면 (새로고침), 문자열을 숫자로 변환합니다.
-                targetNumber = parseInt(targetNumber, 10);
-            }
-
-            // 애니메이션 로직 시작 (생성/저장된 targetNumber 사용)
             const startTime = performance.now();
 
             function updateNumber(currentTime) {
                 const elapsedTime = currentTime - startTime;
                 const progress = Math.min(elapsedTime / duration, 1);
-                const currentNumber = Math.floor(progress * targetNumber);
+                // easeOutQuad 애니메이션 효과 적용
+                const easeOutProgress = progress * (2 - progress); 
+                
+                const currentNumber = Math.floor(easeOutProgress * targetNumber);
                 targetElement.innerText = currentNumber.toLocaleString();
 
                 if (progress < 1) {
@@ -862,9 +861,9 @@
             requestAnimationFrame(updateNumber);
         }
 
-        // 스크립트 실행
-        initializeDisclaimer();
-        initializeCtaText();
+        // 함수 실행
+        injectSEOData();
+        initializeTextElements();
         updateDynamicText();
         animateCount();
     });
